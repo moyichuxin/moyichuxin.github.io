@@ -3,20 +3,42 @@
   <entry>
     <title>Hexo博客搭建及Post文章技巧</title>
     <url>/2023/03/22/%E5%AD%A6%E4%B9%A0/Blog/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<p>这篇文章分享了使用Hexo主题搭建个人博客的经验和心得，以及在此过程中遇到的一些问题和解决方法。我在搭建博客的过程中遇到了很多困难，也从各种资料中学到了很多知识，深刻地感受到自己的不足。正如古人所说：“他山之石，可以攻玉”。在这里我将一些我认为写得很好的Hexo-Blog搭建教程推荐给大家，同时也总结了日常使用Markdawn的一些技巧，希望能对大家有所启发和帮助。</p>
+    <content><![CDATA[<p>这篇文章分享了使用Hexo主题搭建个人博客的经验和心得，以及在此过程中遇到的一些问题和解决方法。我在搭建博客的过程中遇到了很多困难，也从各种资料中学到了很多知识，深刻地感受到自己的不足。正如古人所说：“他山之石，可以攻玉”。在这里我将一些我认为写得很好的Hexo-Blog搭建教程推荐给大家，同时也总结了日常使用Markdawn的一些技巧，希望能对大家有所启发和帮助。🥰</p>
 <span id="more"></span>
 
-<h2 id="Hexo-博客的搭建"><a href="#Hexo-博客的搭建" class="headerlink" title="Hexo 博客的搭建"></a>Hexo 博客的搭建</h2><h3 id="优秀的介绍文章"><a href="#优秀的介绍文章" class="headerlink" title="优秀的介绍文章"></a>优秀的介绍文章</h3><h3 id="搭建流程"><a href="#搭建流程" class="headerlink" title="搭建流程"></a>搭建流程</h3><h3 id="优化博客"><a href="#优化博客" class="headerlink" title="优化博客"></a>优化博客</h3><h3 id="易错小点"><a href="#易错小点" class="headerlink" title="易错小点"></a>易错小点</h3><h2 id="Markdawn文本与Blog"><a href="#Markdawn文本与Blog" class="headerlink" title="Markdawn文本与Blog"></a>Markdawn文本与Blog</h2><h3 id="Blog常用格式"><a href="#Blog常用格式" class="headerlink" title="Blog常用格式"></a>Blog常用格式</h3><h3 id="优秀的介绍文章-1"><a href="#优秀的介绍文章-1" class="headerlink" title="优秀的介绍文章"></a>优秀的介绍文章</h3><h3 id="发文小技巧"><a href="#发文小技巧" class="headerlink" title="发文小技巧"></a>发文小技巧</h3>]]></content>
+<h2 id="Hexo-博客的搭建"><a href="#Hexo-博客的搭建" class="headerlink" title="Hexo 博客的搭建"></a>Hexo 博客的搭建</h2><h3 id="优秀的介绍文章"><a href="#优秀的介绍文章" class="headerlink" title="优秀的介绍文章"></a>优秀的介绍文章</h3><p>互联网开源精神让我们能够获取和分享众多优秀的文档和帮助！这让我们和许多博主、开发者可以相互学习、交流和进步！以下是我搭建博客时参考的一些好文章，希望对大家有所帮助！</p>
+<ol>
+<li><p><a href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客</a></p>
+<blockquote>
+<p>知乎大佬枫叶的文章👍，按照他的思路我完成了初始博客网站的搭建！虽然有些内容可能有些过时，但是在评论区有很多热心的朋友在补充完善。总的来说搭建过程算是十分流畅且完善了。</p>
+</blockquote>
+</li>
+<li><p><a href="https://io-oi.me/tech/hexo-next-optimization/#%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%80%BB%E7%BB%93">打造个性超赞博客 Hexo + NexT + GitHub Pages 的超深度优化</a></p>
+<blockquote>
+<p>一个很有意思的博主，帮助我完成了Blog后期的优化完善。reuixiy 的进阶完善写的十分详细，同时他的生活板块的Blog写的也相当不错，推荐大家去读一读！</p>
+</blockquote>
+</li>
+<li><p><a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html">hexo的next主题个性化教程:打造炫酷网站</a></p>
+<blockquote>
+<p>有十分详细的优化步骤，在博客搭建的过程中主要参考了他的博客加密功能🔒。</p>
+</blockquote>
+</li>
+<li><p><a href="https://hexo.io/zh-cn/docs/">Hexo官方</a></p>
+<blockquote>
+<p>官网对于部分问题的解释更加的完善且详细，对于config部分参数感到困惑的时候去官网看看是一个不错的选择。👍</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="搭建流程"><a href="#搭建流程" class="headerlink" title="搭建流程"></a>搭建流程</h3><p>1. </p>
+<h3 id="优化博客"><a href="#优化博客" class="headerlink" title="优化博客"></a>优化博客</h3><h3 id="易错小点"><a href="#易错小点" class="headerlink" title="易错小点"></a>易错小点</h3><h2 id="Markdawn文本与Blog"><a href="#Markdawn文本与Blog" class="headerlink" title="Markdawn文本与Blog"></a>Markdawn文本与Blog</h2><h3 id="Blog常用格式"><a href="#Blog常用格式" class="headerlink" title="Blog常用格式"></a>Blog常用格式</h3><ol>
+<li><p>Blog的文章常采用Markdawn文本，在我们发文前往往需要设置这篇blog的属性。我们可以使用以下格式，我认为是比较常用且便捷，在使用时删除属性前的**#**即可。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Hexo博客搭建及Post文章技巧</span>	</span><br><span class="line"><span class="comment"># date: 2023-03-22 10:00:00  </span></span><br><span class="line"><span class="comment"># updated: 2023-04-16 23:50:00  </span></span><br><span class="line"><span class="comment"># categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">技术</span>, <span class="string">Hexo</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">技术</span>, <span class="string">Next</span>]</span><br><span class="line"><span class="comment"># tags:</span></span><br><span class="line"><span class="comment">#- 123</span></span><br><span class="line"><span class="comment">#- 1234</span></span><br><span class="line"><span class="comment">#top: 1		</span></span><br><span class="line"><span class="comment">#description: &quot;这是一篇关于我的博客文章的描述。&quot; </span></span><br><span class="line"><span class="comment">#password: 你生日</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="优秀的介绍文章-1"><a href="#优秀的介绍文章-1" class="headerlink" title="优秀的介绍文章"></a>优秀的介绍文章</h3><h3 id="发文小技巧"><a href="#发文小技巧" class="headerlink" title="发文小技巧"></a>发文小技巧</h3>]]></content>
       <categories>
-        <category>学习</category>
-        <category>Diary</category>
-        <category>PlayStation</category>
-        <category>Games</category>
+        <category>💻技术</category>
+        <category>Hexo</category>
       </categories>
-      <tags>
-        <tag>123</tag>
-        <tag>1234</tag>
-      </tags>
   </entry>
   <entry>
     <title>战地2042-XM370A和SPH</title>
