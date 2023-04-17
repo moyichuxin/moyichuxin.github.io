@@ -3,23 +3,22 @@
   <entry>
     <title>战地2042-XM370A和SPH</title>
     <url>/2023/04/15/%E7%94%9F%E6%B4%BB/%E6%B8%B8%E6%88%8F/%E6%88%98%E5%9C%B02042/2042-XM370A%E5%92%8CSPH/</url>
-    <content><![CDATA[<p>战地2042的终极快乐——XM370A和SPH。记录一些最近使用战地终极轮椅打出的快乐片段</p>
+    <content><![CDATA[<p>战地2042的终极快乐——XM370A和SPH。记录一些最近使用战地终极轮椅🦽打出的快乐片段</p>
 <img src="/images/游戏/战地2042/2042-XM370A和SPH.png" alt="2042" style="display: block; margin-left: auto; margin-right: auto; max-width: 70%;" />
 
  <span id="more"></span>
 
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/v7Bmoo7RV64?vq=hd1080" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="//player.bilibili.com/player.html?aid=227444592&bvid=BV1Gh411u7T8&cid=1095478893&page=1&autoplay=0&quality=112" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 ]]></content>
       <categories>
-        <category>游戏</category>
-        <category>战地2042</category>
+        <category>🎮游戏</category>
+        <category>Battlefield2042</category>
       </categories>
       <tags>
-        <tag>战地2042</tag>
-        <tag>空爆枪</tag>
+        <tag>游戏集锦</tag>
       </tags>
   </entry>
   <entry>
@@ -57,14 +56,22 @@
 </li>
 </ol>
 <h3 id="搭建流程"><a href="#搭建流程" class="headerlink" title="搭建流程"></a>搭建流程</h3><ol>
-<li><a href="https://zhuanlan.zhihu.com/p/103268406">注册Github</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/103325381">安转Git</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/103391101">SSH绑定Github</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/103860494">购买域名</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/105715224">安装node.js和Hexo</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/103813944">关联域名与Github</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/105584373">Next主题设置</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/106060640">Blog优化</a></li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/103268406">注册Github</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/103325381">安转Git</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/103391101">SSH绑定Github</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/103860494">购买域名</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/105715224">安装node.js和Hexo</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/103813944">关联域名与Github</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/105584373">Next主题设置</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/106060640">Blog优化</a></p>
+</li>
 </ol>
 <h3 id="优化博客"><a href="#优化博客" class="headerlink" title="优化博客"></a>优化博客</h3><ol>
 <li><p>改变博客文章页面大小</p>
@@ -83,28 +90,64 @@
 <p>可以实现鼠标移动到文章界面时，背景底纹的渐变效果。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">Path:Blogs\themes\next\source\css\_common\components\post</span><br><span class="line"></span><br><span class="line">.use-motion  </span><br><span class="line">&#123;</span><br><span class="line">  if (hexo-config(&#x27;motion<span class="selector-class">.transition</span><span class="selector-class">.post_block</span>&#x27;)) </span><br><span class="line">    &#123;</span><br><span class="line">    <span class="selector-class">.post-block</span> </span><br><span class="line">        &#123;</span><br><span class="line">      <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">margin-top</span>: <span class="number">60px</span>;</span><br><span class="line">      <span class="attribute">margin-bottom</span>: <span class="number">60px</span>;</span><br><span class="line">      <span class="attribute">padding</span>: <span class="number">25px</span>;</span><br><span class="line">      <span class="attribute">background</span>:<span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0.25</span>) none repeat scroll <span class="meta">!important</span>;</span><br><span class="line">            // 设置背景颜色为白色，透明度为<span class="number">0.25</span>，不重复，不滚动，以及使用 !important 标签提高优先级。</span><br><span class="line">      -webkit-<span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">202</span>, <span class="number">203</span>, <span class="number">203</span>, .<span class="number">5</span>);</span><br><span class="line">            //- 为WebKit浏览器设置一个水平偏移<span class="number">0</span>、垂直偏移<span class="number">0</span>、模糊半径<span class="number">5px</span>、颜色为灰色透明度<span class="number">0.5</span>的盒子阴影。</span><br><span class="line">      -moz-<span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">202</span>, <span class="number">203</span>, <span class="number">204</span>, .<span class="number">5</span>);</span><br><span class="line">            //- 为Firefox浏览器设置一个类似的盒子阴影。</span><br><span class="line">      <span class="attribute">transition</span>: background <span class="number">0.3s</span>; </span><br><span class="line">            //- 设置背景颜色过渡效果，过渡时间为<span class="number">0.3</span>秒。</span><br><span class="line">    	&#125;</span><br><span class="line">  <span class="selector-class">.post-block</span><span class="selector-pseudo">:hover</span> </span><br><span class="line">        &#123;   // 定义一个后代选择器，匹配鼠标悬停时的状态</span><br><span class="line">  <span class="attribute">background</span>:<span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0.8</span>) none repeat scroll <span class="meta">!important</span>; </span><br><span class="line">            // - 设置鼠标悬停时的背景颜色为白色，透明度为<span class="number">0.8</span>，不重复，不滚动，以及使用 !important 标签提高优先级。</span><br><span class="line">    	&#125;</span><br><span class="line">    <span class="selector-class">.pagination</span>, <span class="selector-class">.comments</span></span><br><span class="line">        &#123;</span><br><span class="line">      <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="易错小点"><a href="#易错小点" class="headerlink" title="易错小点"></a>易错小点</h3><p>1. </p>
 <h3 id="待优化点"><a href="#待优化点" class="headerlink" title="待优化点"></a>待优化点</h3><ol>
-<li>仅在首页启用背景的渐变</li>
-<li>展示字体优化</li>
-<li>git上传不稳定</li>
-<li>图片、视频的存储方式改为云储存</li>
+<li><p>仅在首页启用背景的渐变</p>
+<ul>
+<li>目前的背景透明会对部分文章的阅读造成一些困难，部分字体与背景重合难以分辨。</li>
+</ul>
+</li>
+<li><p>展示字体优化</p>
+<ul>
+<li>Google Fonts 已支持思源宋体，准备接下来的阶段进行字体的替换。</li>
+</ul>
+</li>
+<li><p>git上传不稳定</p>
+<ul>
+<li>在站点的配置(_config.yml)处, repository 的值往往要在 Github 仓库中 HTTPS 和 SSH 之间切换，否则在hexo d的过程中会产生报错，说无法链接至 Github 仓库。目前仍未找到一个合适的解决办法。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:yourname/yourname.github.io.git  #https://github.com/yourname/yourname.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>图片、视频的存储方式改为云储存</p>
+<ul>
+<li><p>当前所使用的本地存储，当我们将图片上传到图床网站后，图片实际上是存储在图床网站的服务器上。这样，博客服务器(Github)不需要存储大量图片，从而节省了服务器的空间和带宽资源。</p>
+</li>
+<li><p>当前使用的视频托管平台都有一定的缺点，在加载速度和视频画质之间需要进行取舍。</p>
+</li>
+<li><p>购买阿里云对象存储服务，目前有一定的<a href="https://vslam.net/2018/03/04/others/%E5%9F%BA%E4%BA%8EHexo+GitHub%20Pages%20%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#:~:text=5.1-,%E8%B4%AD%E4%B9%B0%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1,-%E8%AE%BF%E9%97%AE%E9%98%BF%E9%87%8C%E4%BA%91">教程</a>，访问<a href="https://www.aliyun.com/product/oss?spm=5176.12825654.eofdhaal5.81.e9392c4ao0cQj6">阿里云OSS对象云存储</a>站点，创建Bucket。所谓的Bucket类似于一个存储空间，可以将自己要存储的对象放在该空间里，例如图片。</p>
+</li>
+</ul>
+</li>
 </ol>
 <h2 id="Markdawn文本与Blog"><a href="#Markdawn文本与Blog" class="headerlink" title="Markdawn文本与Blog"></a>Markdawn文本与Blog</h2><h3 id="Blog常用格式"><a href="#Blog常用格式" class="headerlink" title="Blog常用格式"></a>Blog常用格式</h3><ol>
-<li>Blog的文章常采用Markdawn文本，在我们发文前往往需要设置这篇blog的属性。我们可以使用以下格式，我认为是比较常用且便捷，在使用时删除属性前的#即可。</li>
+<li><p>Blog开头设置</p>
+<p>Blog的文章常采用Markdawn文本，在我们发文前往往需要设置这篇blog的属性。我们可以使用以下格式，我认为是比较常用且便捷，在使用时删除属性前的#即可。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">title: Hexo博客搭建及Post文章技巧	</span><br><span class="line"># date: <span class="number">2023</span>-<span class="number">03</span>-<span class="number">22</span> <span class="number">10</span>:<span class="number">00</span>:<span class="number">00</span>  </span><br><span class="line"># updated: <span class="number">2023</span>-<span class="number">04</span>-<span class="number">16</span> <span class="number">23</span>:<span class="number">50</span>:<span class="number">00</span>  </span><br><span class="line"># categories:</span><br><span class="line">- [技术, Hexo]</span><br><span class="line">- [技术, Next]</span><br><span class="line"># tags:</span><br><span class="line">#- <span class="number">123</span></span><br><span class="line">#- <span class="number">1234</span></span><br><span class="line">#top: <span class="number">1</span>		</span><br><span class="line">#description: <span class="string">&quot;这是一篇关于我的博客文章的描述。&quot;</span> </span><br><span class="line">#password: 你生日</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图片与视频的插入</p>
+<ul>
+<li><p>对于当前的Blog图片采用的是本地储存，</p>
+</li>
+<li><p>视频是使用外部视频服务，将视频上传到 YouTube、Bilibili 或其他视频托管平台。之后，在博客文章中，将视频嵌入到博客文章中。经过测试B站的视频在国内加载速度较快，但是画质低。YouTube视频加载较慢，但是可以调整较高的画质</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//插入图片</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/images/读书/我俩的故事/我俩的故事.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;我们的故事&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: block; margin-left: auto; margin-right: auto; max-width: 50%;&quot;</span> /&gt;</span></span><br><span class="line">//插入YouTube视频</span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">width</span>=<span class="string">&quot;560&quot;</span> <span class="attr">height</span>=<span class="string">&quot;315&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://www.youtube.com/embed/v7Bmoo7RV64?vq=hd1080&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;0&quot;</span> <span class="attr">allow</span>=<span class="string">&quot;autoplay; encrypted-media&quot;</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line">//插入Bilibili站视频</span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;//player.bilibili.com/player.html?aid=227444592&amp;bvid=BV1Gh411u7T8&amp;cid=1095478893&amp;page=1&amp;autoplay=0&amp;quality=112&quot;</span> <span class="attr">scrolling</span>=<span class="string">&quot;no&quot;</span> <span class="attr">border</span>=<span class="string">&quot;0&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;no&quot;</span> <span class="attr">framespacing</span>=<span class="string">&quot;0&quot;</span> <span class="attr">allowfullscreen</span>=<span class="string">&quot;true&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>Emoji的使用</p>
+<p>可以直接从<a href="https://www.emojicopy.com/">emojicopy</a>网站进行copy，直接past到markdawn文本中即可。Emoji在不同设备的显示可能存在一些问题，我们可以找到一些解决<a href="">教程</a></p>
+</li>
 </ol>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Hexo博客搭建及Post文章技巧</span>	</span><br><span class="line"><span class="comment"># date: 2023-03-22 10:00:00  </span></span><br><span class="line"><span class="comment"># updated: 2023-04-16 23:50:00  </span></span><br><span class="line"><span class="comment"># categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">技术</span>, <span class="string">Hexo</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">技术</span>, <span class="string">Next</span>]</span><br><span class="line"><span class="comment"># tags:</span></span><br><span class="line"><span class="comment">#- 123</span></span><br><span class="line"><span class="comment">#- 1234</span></span><br><span class="line"><span class="comment">#top: 1		</span></span><br><span class="line"><span class="comment">#description: &quot;这是一篇关于我的博客文章的描述。&quot; </span></span><br><span class="line"><span class="comment">#password: 你生日</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="优秀的介绍文章"><a href="#优秀的介绍文章" class="headerlink" title="优秀的介绍文章"></a>优秀的介绍文章</h3><ol>
 <li><a href="https://xianbai.me/learn-md/article/about/readme.html">Markdawn语法的介绍与使用</a></li>
+<li><a href="https://github.com/csjiabin/hexo-theme-next/blob/master/source/_posts/Markdown%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md">Markdown使用指南</a></li>
 </ol>
 <h3 id="发文小技巧"><a href="#发文小技巧" class="headerlink" title="发文小技巧"></a>发文小技巧</h3><ol>
 <li>跳过1级标题，直接从2级标题开始。</li>
-<li>合理使用<a href="https://www.emojicopy.com/">emoji</a></li>
+<li>合理使用<a href="https://www.emojicopy.com/">emoji</a>，可以使文章的表达生动很多。</li>
 <li>Blog的核心是内容，优质的内容要远比一个漂亮的形式重要。</li>
-<li></li>
+<li>一个形象的比喻要比一个细致的图片更能表达作者思想。</li>
 </ol>
 ]]></content>
       <categories>
