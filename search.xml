@@ -1,6 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>计控总结-应用程序设计与实现技术</title>
+    <url>/2023/04/18/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E7%AC%AC6%E7%AB%A0%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h2 id="测量数据预处理"><a href="#测量数据预处理" class="headerlink" title="测量数据预处理"></a>测量数据预处理</h2><h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><ul>
+<li><p><strong>信号调理</strong></p>
+<p>放大、滤波、I/V转换</p>
+</li>
+<li><p><strong>一次处理</strong></p>
+<p>系统误差校正、数字滤波，逻辑判断、标度变换</p>
+</li>
+<li><p><strong>二次处理</strong></p>
+<p>前两步得到的测量数据进行分析，寻找规律，判断事物性质，生成所需要的控制信号</p>
+</li>
+</ul>
+<h3 id="系统误差"><a href="#系统误差" class="headerlink" title="系统误差"></a>系统误差</h3><ul>
+<li><p>定义</p>
+</li>
+<li><p>特点</p>
+</li>
+<li><p>处理原则</p>
+</li>
+<li><p>方法</p>
+<ul>
+<li><p>数字调零</p>
+</li>
+<li><p>全自动校准：既可消除零点漂移和偏移的影响</p>
+<script type="math/tex; mode=display">
+V=(\frac {x-x_0} {x_1-x_0})\times V_REF</script><ul>
+<li>人工自动校准</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="线性化处理"><a href="#线性化处理" class="headerlink" title="线性化处理"></a>线性化处理</h3><ul>
+<li>查表法</li>
+<li>数学表达式换算<ul>
+<li>软测量方法</li>
+</ul>
+</li>
+<li>折线近似及线性插值</li>
+</ul>
+<h3 id="标度变换方法"><a href="#标度变换方法" class="headerlink" title="标度变换方法"></a>标度变换方法</h3><ul>
+<li><p>线性变换公式</p>
+</li>
+<li><p>公式转换法</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <img src="/images/学习/计算机控制技术/线性变换公式.png"  style="display: block; margin-left: auto; margin-right: auto; max-width: 50%;" /></p>
+<ul>
+<li>其他标度变换法</li>
+</ul>
+<h3 id="越线报警处理"><a href="#越线报警处理" class="headerlink" title="越线报警处理"></a>越线报警处理</h3><h3 id="量化误差来源"><a href="#量化误差来源" class="headerlink" title="量化误差来源"></a>量化误差来源</h3><ul>
+<li>量化误差<ul>
+<li>量化单位：$q=\frac 1 {2^{n_1}-1}\approx 2^{-n_1}$</li>
+</ul>
+</li>
+<li>余数处理<ul>
+<li>截尾</li>
+<li>舍入</li>
+</ul>
+</li>
+</ul>
+<h3 id="字长选择与分辨率"><a href="#字长选择与分辨率" class="headerlink" title="字长选择与分辨率"></a>字长选择与分辨率</h3><ul>
+<li>分辨率<ul>
+<li>$D=\frac 1 {2^{n_1}-1}$</li>
+</ul>
+</li>
+<li>字长<ul>
+<li>$n\ge \log_{2}{(1+\frac{x_{max}-x_{min} }{\lambda } )} $</li>
+<li>$n\ge \log_{2}{(1+\frac{1}{D_{0} } )} $</li>
+</ul>
+</li>
+</ul>
+<h2 id="软件抗干扰技术"><a href="#软件抗干扰技术" class="headerlink" title="软件抗干扰技术"></a>软件抗干扰技术</h2><ul>
+<li><p>噪声</p>
+<ul>
+<li>周期性</li>
+<li>随机信号</li>
+</ul>
+</li>
+<li><p>数字滤波</p>
+<ul>
+<li><p>算术平均值滤波</p>
+<ul>
+<li>算术平均值法适用于随机干扰信号的滤波</li>
+</ul>
+</li>
+<li><p>中位值滤波</p>
+<ul>
+<li>对缓慢变化的过程采用中位值滤波有良好的效果</li>
+</ul>
+</li>
+<li><p>限幅滤波</p>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><p>惯性滤波法</p>
+<ul>
+<li>一阶惯性滤波用于高频及低频干扰信号的滤除</li>
+</ul>
+</li>
+<li><p>递推（滑动）平均滤波法</p>
+<ul>
+<li>递推平均滤波算法对周期性干扰有良好的抑制作用，平滑度高，灵敏度低</li>
+</ul>
+</li>
+<li><p>加权递推平均滤波法</p>
+<ul>
+<li>适用于有较大纯滞后时间常数的对象和采样周期较短的系统</li>
+</ul>
+</li>
+<li><p>结论：</p>
+<ul>
+<li><p><strong>平均值滤波法适用于周期性干扰</strong></p>
+</li>
+<li><p><strong>中位值滤波法和限幅滤波法适用于偶然的脉冲干扰</strong></p>
+</li>
+<li><p><strong>惯性滤波法适用于高频及低频的干扰信号</strong></p>
+</li>
+<li><p><strong>加权平均值滤波法适用于纯迟延较大的被控制对象</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>📖学习</category>
+        <category>计算机控制技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>战地2042-XM370A和SPH</title>
     <url>/2023/04/14/%E7%94%9F%E6%B4%BB/%E6%B8%B8%E6%88%8F/%E6%88%98%E5%9C%B02042/2042-XM370A%E5%92%8CSPH/</url>
     <content><![CDATA[<p>战地2042的终极快乐——XM370A和SPH。记录一些最近使用战地终极轮椅🦽打出的快乐片段</p>
