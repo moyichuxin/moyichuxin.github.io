@@ -65,13 +65,21 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 </li>
 </ul>
 <h3 id="字长选择与分辨率"><a href="#字长选择与分辨率" class="headerlink" title="字长选择与分辨率"></a>字长选择与分辨率</h3><ul>
-<li>分辨率<ul>
+<li><p>分辨率</p>
+<ul>
 <li>$D=\frac 1 {2^{n_1}-1}$</li>
 </ul>
 </li>
-<li>字长<ul>
-<li>$n\ge \log_{2}{(1+\frac{x_{max}-x_{min} }{\lambda } )} $</li>
-<li>$n\ge \log_{2}{(1+\frac{1}{D_{0} } )} $</li>
+<li><p>字长</p>
+<ul>
+<li><p>$n\ge \log_{2}{(1+\frac{x_{max}-x_{min} }{\lambda } )} $</p>
+<p>$\lambda$的求解需要注意，要转换为对于AD而言单位是$\frac{mv} {bit}$</p>
+<p>例如：要从1000°分辨4°，AD输入[0-5V]</p>
+<p>​            $\lambda$=$\frac{4}{1000}×5000$</p>
+<p>​            $n\ge \log_{2}{(1+\frac{5000-0}{\lambda } )} $</p>
+</li>
+<li><p>$n\ge \log_{2}{(1+\frac{1}{D_{0} } )} $</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -96,7 +104,7 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 </li>
 <li><p>限幅滤波</p>
 <ul>
-<li></li>
+<li>适用于偶然的大的脉冲干扰或采样器的不稳定，使得采样值偏离实际值太远</li>
 </ul>
 </li>
 <li><p>惯性滤波法</p>
