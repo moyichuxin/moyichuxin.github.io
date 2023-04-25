@@ -234,6 +234,8 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 <li><p>模拟PID控制器的理想算式</p>
 <ul>
 <li>$ K_p\left [ {e\left ( t \right )+\frac 1 T_i\int ^t_0 {e\left ( t \right )dt+T_d\frac {de\left ( t \right )} {dt}}} \right ] $</li>
+<li>位置PID：$u(k)=k_p[e(k)+\frac{T}{T_I}\sum ^{k}_{i=0} {e(t)}+\frac{T_D}{T}(e(k)-e(k-1))]$</li>
+<li>增量PID：$\Delta U(k)=K_p[(1+\frac{T}{T_I}+\frac{T_D}{T})e(k)-(1+\frac{2T_D}{T})e(k-1)+\frac{T_D}{T}e(k-2)]$</li>
 </ul>
 </li>
 <li><p>PID控制器方框图</p>
@@ -331,6 +333,16 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 <li>首先只整定比例部分。比例系数由小变大。</li>
 <li>若静差不能满足设计要求，则须加入积分环节。</li>
 <li>若使用比例积分调节器消除了静差，但动态过程经反复调整仍不能满意，则可加入微分环节，构成比例积分微分调节器。 </li>
+</ul>
+<h3 id="扩充响应曲线法"><a href="#扩充响应曲线法" class="headerlink" title="扩充响应曲线法"></a>扩充响应曲线法</h3><ul>
+<li><p>变化过程曲线</p>
+<p><img src="/images/学习/计算机控制技术/变化过程曲线.png" title="带死区的PID控制" style="display: block; margin-left: auto; margin-right: auto; max-width: 60%;" /></p>
+</li>
+<li><p>扩充响应整定参数表</p>
+<p><img src="/images/学习/计算机控制技术/扩充响应整定参数.png" title="带死区的PID控制" style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /></p>
+</li>
+<li><p>常见$G(s)=\frac{K_c}{T_\tau s+1}e^{-\tau s}$</p>
+</li>
 </ul>
 <h2 id="数字控制器的离散化设计技术"><a href="#数字控制器的离散化设计技术" class="headerlink" title="数字控制器的离散化设计技术"></a>数字控制器的离散化设计技术</h2><h3 id="数字控制器的离散化设计步骤"><a href="#数字控制器的离散化设计步骤" class="headerlink" title="数字控制器的离散化设计步骤"></a>数字控制器的离散化设计步骤</h3><ul>
 <li><p>模拟对象离散化，化为等效的数字控制系统</p>
@@ -431,6 +443,17 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 </ul>
 </li>
 <li>参考有纹波设计，$Φ(z)$ 包含$G(z)$的全部零点。</li>
+<li>通过求解U(k)看最后的系数是否发生变化来判断是否为无纹波。</li>
+<li>分析哪些典型输入信号可以实现最小拍无纹波<ul>
+<li>对于$G(z)$来说，每有一个$\frac{1}{1-z^{-1}}$视作有一个积分环节</li>
+<li>当达到无纹波时应该有<ul>
+<li>没有积分环节$\to $只能是阶跃</li>
+<li>有1个积分环节$\to $阶跃信号或者速度信号</li>
+<li>有2个积分环节$\to $都可以</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="纯滞后控制技术"><a href="#纯滞后控制技术" class="headerlink" title="纯滞后控制技术"></a>纯滞后控制技术</h2><h3 id="施密斯预估器"><a href="#施密斯预估器" class="headerlink" title="施密斯预估器"></a>施密斯预估器</h3><ul>
 <li><p>采用Smith补偿的纯滞后补偿控制系统</p>
@@ -489,15 +512,23 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 <li><p>计算主回路偏差$e_1(k)=r_1(k)-y_1(k)$</p>
 </li>
 <li><p>计算主回路$PID_1$控制器输出$u_1(k)$</p>
-<p><img src="/images/学习/计算机控制技术/串级控制求uk.png" title="双端不对地输入" style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /></p>
+<ul>
+<li><p>根据已有的$D_1(z)=\frac{U_1(z)}{E_1(z)}=\frac{0.6-0.4z^{-1}+0.05z^{-2}}{1-z^{-1}}$，对乘，转换。</p>
 </li>
+<li><p>得到$u_1(k)=u_1(k-1)+0.6e_1(k)-0.4e_1(k-1)+0.05e_1(k-2)$</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;img src=&quot;/images/学习/计算机控制技术/串级控制求uk.png&quot; title=&quot;双端不对地输入&quot; style=&quot;display: block; margin-left: auto; margin-right: auto; max-width: 80%;&quot; /&gt;
+</code></pre><ul>
 <li><p>计算副回路偏差$e_2(k)=u_1(k)-y_2(k)$</p>
 </li>
 <li><p>计算副回路$PID_2$控制器输出$u_2(k)$</p>
 </li>
 <li><p>副回路控制量$u_2(k)$经D/A输出，作为计算机控制器的输出量作用于被控对象。</p>
-</li>
-</ul>
 </li>
 </ul>
 <h2 id="前馈—反馈控制技术"><a href="#前馈—反馈控制技术" class="headerlink" title="前馈—反馈控制技术"></a>前馈—反馈控制技术</h2><ul>
@@ -607,6 +638,9 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 </li>
 </ul>
 <h3 id="输出字表"><a href="#输出字表" class="headerlink" title="输出字表"></a>输出字表</h3><p><img src="/images/学习/计算机控制技术/步进电机输出字表.png" title="步进电机输出字表" style="display: block; margin-left: auto; margin-right: auto; max-width: 60%;" /></p>
+<ul>
+<li>根据给进方向先移动指针后输出。</li>
+</ul>
 <h3 id="速度控制"><a href="#速度控制" class="headerlink" title="速度控制"></a>速度控制</h3><ul>
 <li>控制延时的时间常数，即可达到调速的目的。</li>
 </ul>
@@ -637,7 +671,8 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 <li>过零检测——去谐波</li>
 <li>SCR——双向交流开关</li>
 </ul>
-<h2 id="模拟量输入通道组成"><a href="#模拟量输入通道组成" class="headerlink" title="模拟量输入通道组成"></a>模拟量输入通道组成</h2><h3 id="变送器"><a href="#变送器" class="headerlink" title="变送器"></a>变送器</h3><ul>
+<h2 id="模拟量输入通道组成"><a href="#模拟量输入通道组成" class="headerlink" title="模拟量输入通道组成"></a>模拟量输入通道组成</h2><p><img src="/images/学习/计算机控制技术/模拟量输入接口结构.png" title="模拟量输入接口结构" style="display: block; margin-left: auto; margin-right: auto; max-width: 70%;" /></p>
+<h3 id="变送器"><a href="#变送器" class="headerlink" title="变送器"></a>变送器</h3><ul>
 <li>将传感器输出的非标准的电信号，转换为统一的标准信号（4~ 20mA(DDZ-Ⅲ)，0~10mA(DDZ-Ⅱ)）的变换电路。</li>
 </ul>
 <h3 id="有源I-V变换"><a href="#有源I-V变换" class="headerlink" title="有源I/V变换"></a>有源I/V变换</h3><p><img src="/images/学习/计算机控制技术/有源IV变换.png" title="有源IV变换" style="display: block; margin-left: auto; margin-right: auto; max-width: 70%;" /></p>
@@ -662,6 +697,7 @@ V=(\frac {Y_{max}-Y_{min}} {N_{max}-N_{min}})(X-N_{min})+Y_{min}</script><p>  <i
 <h3 id="采样保持器-孔径时间"><a href="#采样保持器-孔径时间" class="headerlink" title="采样保持器-孔径时间"></a>采样保持器-孔径时间</h3><ul>
 <li>对一定的转换时间$t_{A/D}$，转换误差的百分数与信号频率成正比。</li>
 <li>误差百分数为：$ \sigma =\frac {\Delta U\times 100} {U_m}=2\pi ft_{A/D}\times 100 $</li>
+<li>零阶保持器：$\frac{1-e^{-\tau s}}{s}$</li>
 </ul>
 <h3 id="8255A与总线连接"><a href="#8255A与总线连接" class="headerlink" title="8255A与总线连接"></a>8255A与总线连接</h3><ul>
 <li>常用：8255A的A口和B口都工作于方式0，A口、B口和C口的上半部分为输入方式，而C口的下半部分为输出方式。</li>
