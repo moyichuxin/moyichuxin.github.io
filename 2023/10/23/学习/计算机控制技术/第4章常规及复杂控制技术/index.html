@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/animal-kingdom-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/crocodile-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":320,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+
+
+
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("http://moyichuxin.com"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="计控第4章总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计控总结-常规及复杂控制技术">
+<meta property="og:url" content="http://example.com/2023/10/23/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E7%AC%AC4%E7%AB%A0%E5%B8%B8%E8%A7%84%E5%8F%8A%E5%A4%8D%E6%9D%82%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="鳄鱼中心">
+<meta property="og:description" content="计控第4章总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/PID%E6%8E%A7%E5%88%B6%E5%99%A8%E6%96%B9%E6%A1%86%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E5%BE%AE%E5%88%86%E5%85%88%E8%A1%8CPID%E6%8E%A7%E5%88%B6%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E5%B8%A6%E6%AD%BB%E5%8C%BA%E7%9A%84PID%E6%8E%A7%E5%88%B6.jpg">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E5%8F%98%E5%8C%96%E8%BF%87%E7%A8%8B%E6%9B%B2%E7%BA%BF.png">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E6%89%A9%E5%85%85%E5%93%8D%E5%BA%94%E6%95%B4%E5%AE%9A%E5%8F%82%E6%95%B0.png">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E7%AD%89%E6%95%88%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E5%9B%BE%20.png">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E9%87%87%E7%94%A8Smith%E8%A1%A5%E5%81%BF%E7%9A%84%E7%BA%AF%E6%BB%9E%E5%90%8E%E8%A1%A5%E5%81%BF%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E6%95%B0%E5%AD%97%E4%B8%B2%E7%BA%A7%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E4%B8%B2%E7%BA%A7%E6%8E%A7%E5%88%B6%E6%B1%82uk.png">
+<meta property="og:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E5%89%8D%E9%A6%88%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84.png">
+<meta property="article:published_time" content="2023-10-22T16:58:38.713Z">
+<meta property="article:modified_time" content="2023-04-25T17:19:53.164Z">
+<meta property="article:author" content="moyichuxin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/PID%E6%8E%A7%E5%88%B6%E5%99%A8%E6%96%B9%E6%A1%86%E5%9B%BE.png">
+
+<link rel="canonical" href="http://example.com/2023/10/23/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E7%AC%AC4%E7%AB%A0%E5%B8%B8%E8%A7%84%E5%8F%8A%E5%A4%8D%E6%9D%82%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计控总结-常规及复杂控制技术 | 鳄鱼中心</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">鳄鱼中心</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">灵感、爱、与思考</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/23/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E7%AC%AC4%E7%AB%A0%E5%B8%B8%E8%A7%84%E5%8F%8A%E5%A4%8D%E6%9D%82%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="moyichuxin">
+      <meta itemprop="description" content="一块网络自留地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳄鱼中心">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计控总结-常规及复杂控制技术
+        </h1>
+
+        <div class="post-meta">
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-23 00:58:38" itemprop="dateCreated datePublished" datetime="2023-10-23T00:58:38+08:00">2023-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-26 01:19:53" itemprop="dateModified" datetime="2023-04-26T01:19:53+08:00">2023-04-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%F0%9F%93%96%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">📖学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%F0%9F%93%96%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机控制技术</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">计控第4章总结</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="系统的性能指标"><a href="#系统的性能指标" class="headerlink" title="系统的性能指标"></a>系统的性能指标</h2><ul>
+<li>稳态性能指标</li>
+<li>动态性能指标</li>
+<li>抗干扰性能</li>
+<li>数字控制器的设计方法<ul>
+<li>模拟化设计方法</li>
+<li>离散化设计方法</li>
+<li>状态空间设计法</li>
+</ul>
+</li>
+</ul>
+<h2 id="数字控制器的连续化设计技术"><a href="#数字控制器的连续化设计技术" class="headerlink" title="数字控制器的连续化设计技术"></a>数字控制器的连续化设计技术</h2><h3 id="将-D-s-离散化为-D-z"><a href="#将-D-s-离散化为-D-z" class="headerlink" title="将$D(s)$离散化为$D(z)$"></a>将$D(s)$离散化为$D(z)$</h3><ul>
+<li>双线性变换法<ul>
+<li>$z&#x3D;e^{sT}\to s&#x3D;\frac {2} {T}\frac {z-1} {z+1}$</li>
+</ul>
+</li>
+<li>前向差分法<ul>
+<li>$z&#x3D;e^{sT}\to s&#x3D;\frac {z-1} {T}$</li>
+</ul>
+</li>
+<li>后向差分法<ul>
+<li>$z&#x3D;e^{sT}\to s&#x3D;\frac {z-1} {Tz}$</li>
+</ul>
+</li>
+</ul>
+<h3 id="数字PID控制器"><a href="#数字PID控制器" class="headerlink" title="数字PID控制器"></a>数字PID控制器</h3><ul>
+<li><p>模拟PID控制器的理想算式</p>
+<ul>
+<li>$ K_p\left [ {e\left ( t \right )+\frac 1 T_i\int ^t_0 {e\left ( t \right )dt+T_d\frac {de\left ( t \right )} {dt}}} \right ] $</li>
+<li>位置PID：$u(k)&#x3D;k_p[e(k)+\frac{T}{T_I}\sum ^{k}_{i&#x3D;0} {e(t)}+\frac{T_D}{T}(e(k)-e(k-1))]$</li>
+<li>增量PID：$\Delta U(k)&#x3D;K_p[(1+\frac{T}{T_I}+\frac{T_D}{T})e(k)-(1+\frac{2T_D}{T})e(k-1)+\frac{T_D}{T}e(k-2)]$</li>
+</ul>
+</li>
+<li><p>PID控制器方框图</p>
+<img src="/images/学习/计算机控制技术/PID控制器方框图.png" title="双端不对地输入" style="display: block; margin-left: auto; margin-right: auto; max-width: 40%;" />
+</li>
+<li><p>PID的作用</p>
+<ul>
+<li>P：能迅速反映误差，消除大的偏差，比例系数KP大,系统快速性好，静差减小，但不能消除稳态误差，且振荡较强，甚至引起系统不稳定</li>
+<li>I：无差调节(消除小的偏差)，只要系统存在误差，积分控制作用就不断积累，并且输出控制量以消除误差，因而只要有足够的时间，积分作用将能完全消除误差，但是如果积分作用太强($T_i$太小)会使系统的超调量加大，甚至出现振荡，降低响应速度。</li>
+<li>D：改善动态性能，对偏差的变化做出反应。减小超调量，克服振荡，使系统稳定性提高，同时加快系统的动态响应速度，减小调整时间。但对噪声敏感，且参数值难以调整。 $T_d$太大，易引起系统不稳定。</li>
+</ul>
+</li>
+</ul>
+<h3 id="增量形PID调节器"><a href="#增量形PID调节器" class="headerlink" title="增量形PID调节器"></a>增量形PID调节器</h3><ul>
+<li>所谓增量式PID，是对位置式PID取增量，这时数字控制器输出的是相邻两次采样时刻所计算的位置值之差。</li>
+<li>什么时候用增量型PID？<ul>
+<li>适用于被控对象有积分作用时，如果控制系统的执行机构采用步进电机，在每个采样周期，控制器输出的控制量是相对于上次控制量的增加，此时控制器应采用数字PID增量式控制算法。</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>计算机只输出增量，误动作时影响小，必要时可增设逻辑保护; </li>
+<li>手动&#x2F;自动切换时冲击小; </li>
+<li>算式不需要累加，只需记录四个历史数据，即$e(k-2)$,$e(k-1)$,$e(k)$和$u(k-1)$，占用内存少，计算方便；</li>
+<li>避免了计算误差和计算精度造成的累加误差的影响；在实际系统中，如执行机构为步进电机，则可以自动完成数字PID的增量式的计算功能。</li>
+</ul>
+</li>
+</ul>
+<h3 id="积分项的改进"><a href="#积分项的改进" class="headerlink" title="积分项的改进"></a>积分项的改进</h3><ul>
+<li>积分分离<ul>
+<li>什么时候用？<ul>
+<li>在过程的启动、结束或大幅度增减设定值时，短时间内系统输出有很大的偏差，会造成PID运算的积分积累。由于系统的惯性和滞后，在积分累积项的作用下，往往会产生较大的超调和长时间的波动。在$e(k)$较小的时候使用。</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>消除积分饱和，提高控制精度，在误差值大时取消积分作用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>积分抗饱和<ul>
+<li>如果执行机构已到极限位置，仍然不能消除偏差时，由于积分作用，尽管计算PID差分方程式所得的运算结果继续增大或减小，但执行机构已无相应的动作，这就称为积分饱和。</li>
+<li>当出现积分饱和时，势必使超调量增加，控制品质变坏。</li>
+<li>退饱和需要时间。</li>
+</ul>
+</li>
+<li>梯形积分</li>
+<li>消除积分不灵敏区</li>
+</ul>
+<h3 id="微分项的改进"><a href="#微分项的改进" class="headerlink" title="微分项的改进"></a>微分项的改进</h3><ul>
+<li><p>不完全微分PID控制算法</p>
+<ul>
+<li>在数字PID调节器中串接低通滤波器(一阶惯性环节)来抑制高频干扰，低通滤波器的传递函数。</li>
+<li>$u_D(k)&#x3D;\alpha  u_D(k-1)+K_D(1-\alpha)[e(k)-e(k-1)]$<ul>
+<li>$u_D(k)$是控制量中的微分部分。</li>
+<li>$e(k)$为阶跃信号，$k\geq0$时$e(k)$为1，否则为0 。</li>
+<li>在K时刻：$u_D(k)&#x3D;\alpha^k K_D(1-\alpha)$</li>
+</ul>
+</li>
+<li>能在各个周期里按照偏差变化的趋势，均匀地输出，真正起到了微分作用，改善了系统的性能。</li>
+</ul>
+</li>
+<li><p>微分先行PID控制算法</p>
+<ul>
+<li><p>只对输出量y(t)进行微分，而对给定值r(t)不作微分。（输出量先行微分PID算法）</p>
+</li>
+<li><p>控制框图</p>
+<img src="/images/学习/计算机控制技术/微分先行PID控制算法.png" title="微分先行PID控制算法" style="display: block; margin-left: auto; margin-right: auto; max-width: 50%;" />
+</li>
+<li><p>适用于给定值频繁提降的场合，可以避免因提降给定值时所引起的超调量过大、阀门动作过分剧烈的振荡。$\gamma$为微分增益系数。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="时间最优PID控制"><a href="#时间最优PID控制" class="headerlink" title="时间最优PID控制"></a>时间最优PID控制</h3><ul>
+<li><p>带死区的PID控制</p>
+<ul>
+<li><p>在要求控制作用少变动的场合，可采用带死区的PID，实际上是非线性控制系统。</p>
+</li>
+<li><p>控制框图</p>
+<img src="/images/学习/计算机控制技术/带死区的PID控制.jpg" title="带死区的PID控制" style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" />
+
+<ul>
+<li>$ \varepsilon  $－不灵敏区，即精度范围。可根据实际控制对象由实验确定。</li>
+</ul>
+</li>
+<li><p>适用场合</p>
+<ul>
+<li>具有较宽精度范围的控制场合。例如，化工过程中间液面控制。</li>
+<li>要求控制作用尽可能少变动的场合。例如，混合煤气加压机出口压力控制系统。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="凑试法确定PID参数"><a href="#凑试法确定PID参数" class="headerlink" title="凑试法确定PID参数"></a>凑试法确定PID参数</h3><ul>
+<li>首先只整定比例部分。比例系数由小变大。</li>
+<li>若静差不能满足设计要求，则须加入积分环节。</li>
+<li>若使用比例积分调节器消除了静差，但动态过程经反复调整仍不能满意，则可加入微分环节，构成比例积分微分调节器。</li>
+</ul>
+<h3 id="扩充响应曲线法"><a href="#扩充响应曲线法" class="headerlink" title="扩充响应曲线法"></a>扩充响应曲线法</h3><ul>
+<li><p>变化过程曲线</p>
+<img src="/images/学习/计算机控制技术/变化过程曲线.png" title="带死区的PID控制" style="display: block; margin-left: auto; margin-right: auto; max-width: 60%;" />
+</li>
+<li><p>扩充响应整定参数表</p>
+<img src="/images/学习/计算机控制技术/扩充响应整定参数.png" title="带死区的PID控制" style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" />
+</li>
+<li><p>常见$G(s)&#x3D;\frac{K_c}{T_\tau s+1}e^{-\tau s}$</p>
+</li>
+</ul>
+<h2 id="数字控制器的离散化设计技术"><a href="#数字控制器的离散化设计技术" class="headerlink" title="数字控制器的离散化设计技术"></a>数字控制器的离散化设计技术</h2><h3 id="数字控制器的离散化设计步骤"><a href="#数字控制器的离散化设计步骤" class="headerlink" title="数字控制器的离散化设计步骤"></a>数字控制器的离散化设计步骤</h3><ul>
+<li><p>模拟对象离散化，化为等效的数字控制系统</p>
+<img src="/images/学习/计算机控制技术/等效数字控制系统原理图 .png" title="等效数字控制系统原理图" style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" />
+
+<ul>
+<li>$D(z)$—计算机数字调节器</li>
+<li>$H(s)$—零阶保持器：$H(s)&#x3D;\frac {1-e^{-Ts}} {s}$</li>
+<li>$G_c(s)$—被控的连续对象（模拟对象）</li>
+<li>$G (s)＝H(s)G_c(s)$－广义对象传递函数</li>
+<li>$G(z)$—广义对象脉冲传递函数</li>
+<li>$Φ(z)$—系统闭环脉冲传递函数：$Φ(z)&#x3D;\frac {D(z)G(z)} {1+D(z)G(z)}$</li>
+<li>$Φ(z)&#x3D;D(z)G(z)Φ_e(z)$</li>
+<li>$1-Φ_e(z)&#x3D;Φ(z)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="最小拍控制器的设计"><a href="#最小拍控制器的设计" class="headerlink" title="最小拍控制器的设计"></a>最小拍控制器的设计</h3><ul>
+<li>有纹波与无纹波<ul>
+<li>有纹波：指对任意两次采样时刻之间的输出不提任何要求（设计过程和设计结果均较简单），只能保证系统输出在采样点上误差为0。</li>
+<li>无纹波：在采样点上及采样点之间均能保证误差为0。</li>
+</ul>
+</li>
+<li>最小拍控制<ul>
+<li>要求闭环系统对于某种特定的输入在最少个采样周期内达到无静差的稳态。</li>
+</ul>
+</li>
+<li>典型输入<ul>
+<li>阶跃输入：$R(z)&#x3D;\frac{1} {1-z^{-1}}$</li>
+<li>速度输入：$R(z)&#x3D;\frac{Tz^{-1}} {(1-z^{-1})^2}$</li>
+<li>加速度输入：$R(z)&#x3D;\frac{T^2z^{-1}(1+z^{-1})} {2(1-z^{-1})^3}$</li>
+</ul>
+</li>
+</ul>
+<h3 id="最小拍设计的稳定约束"><a href="#最小拍设计的稳定约束" class="headerlink" title="最小拍设计的稳定约束"></a>最小拍设计的稳定约束</h3><ul>
+<li>当$G(z)$有单位圆外或圆上的零点时，在$Φ(z)$表达式中应把这些零点作为$Φ(z)$的零点而保留。</li>
+<li>当$G(z)$有单位圆外或圆上的极点时，在$Φ_e(z)$表达式中应把这些极点作为$Φe(z)$的零点而保留。</li>
+</ul>
+<h3 id="最少拍有纹波控制器的设计"><a href="#最少拍有纹波控制器的设计" class="headerlink" title="最少拍有纹波控制器的设计"></a>最少拍有纹波控制器的设计</h3><ul>
+<li><p>在最少拍控制器设计(快速性和准确性)的基础上考虑了可实现性和稳定性的要求得到</p>
+<ul>
+<li>用 $Φ_e(z)$ 中单位圆上或圆外零点对消G(z) 单位圆上或圆外的极点。</li>
+<li>用 $Φ(z)$ 中单位圆上或圆外零点和纯滞后环节对消$G(z)$ 单位圆上或圆外的零点和纯滞后环节。</li>
+<li>使$Φ(z)$分母减分子的阶次之差大于或等于$G(z)$分母减分子的阶次之差。</li>
+</ul>
+</li>
+<li><p><strong>解题步骤</strong></p>
+<ul>
+<li><p>单位输入进行Z变换，得出$R(Z)$</p>
+<ul>
+<li>阶跃输入：$R(z)&#x3D;\frac{1} {1-z^{-1}}$</li>
+<li>速度输入：$R(z)&#x3D;\frac{Tz^{-1}} {(1-z^{-1})^2}$</li>
+<li>加速度输入：$R(z)&#x3D;\frac{T^2z^{-1}(1+z^{-1})} {2(1-z^{-1})^3}$</li>
+</ul>
+</li>
+<li><p>求$G(Z)$</p>
+<ul>
+<li><p>$G(Z)&#x3D;Z[H(s)G_c(s)]$</p>
+</li>
+<li><p>加入说明文字：</p>
+<p>其中$b_0&#x3D;xxx$为单位圆外零点；$a_0&#x3D;xxx$为单位圆上极点；$z^{-1}$为广义对象滞后因子　</p>
+</li>
+<li><p>合理求解Z变换</p>
+</li>
+</ul>
+</li>
+<li><p>求$Φ(z)$和$Φ_e(z)$</p>
+<ul>
+<li><p>$Φ_e(z)&#x3D;G(z)_{极点}(1-z^{-1})^kF_1(z)\to k&#x3D;1&#x2F;2&#x2F;3$</p>
+<p>如果$(1-z^{-1})^k$已经包含了部分$G(z)$的极点，则那些极点可以省略。</p>
+</li>
+<li><p>$Φ(z)&#x3D;G(z)_{零点}F_2(z)$</p>
+</li>
+<li><p>$1-Φ_e(z)&#x3D;Φ(z)$</p>
+</li>
+</ul>
+</li>
+<li><p>求$D(z)$</p>
+<ul>
+<li>$D(z)&#x3D;\frac{Φ(z)} {G(z)Φ_e(z)}$</li>
+</ul>
+</li>
+<li><p>求控制序列$u(k)$及输出序列$y(k)$并多项式展开画图</p>
+<ul>
+<li>$E(z)&#x3D;Φ_e(z)R(z)$</li>
+<li>$U(z)&#x3D;D(z)E(z)&#x3D;D(z)Φ_e(z)R(z)$</li>
+<li>$Y(z)&#x3D;Φ(z)R(z)$</li>
+<li>$\frac {1} {1-z^{-1}}&#x3D;1+z^{-1}+z^{-2}+z^{-3}+……$</li>
+<li>$\frac {1} {(1-z^{-1})^2}&#x3D;1+2z^{-1}+3z^{-2}+4z^{-3}+……$</li>
+<li>$\frac{a+bz^{-1}+cz^{-2}+dz^{-3}}{1-z^{-1}}&#x3D;a+(a+b)z^{-1}+(a+b+c)z^{-2}+(a+b+c+d)z^{-3}+(a+b+c+d)z^{-4}+(a+b+c+d)z^{-5}+……$</li>
+<li>$\frac{a+bz^{-1}+cz^{-2}}{(1-z^{-1})^2}&#x3D;a+(2a+b)z^{-1}+(3a+2b+c)z^{-2}+(4a+3b+2c)z^{-3}+(5a+4b+3c)z^{-4}+……$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="最少拍无纹波控制器的设计"><a href="#最少拍无纹波控制器的设计" class="headerlink" title="最少拍无纹波控制器的设计"></a>最少拍无纹波控制器的设计</h3><ul>
+<li>设计要求结论：<ul>
+<li>最少拍无纹波设计，要求$Φ(z)$ 包含$G(z)$的全部零点。</li>
+<li>相对最少拍有纹波系统设计，无纹波系统的调整时间要增加若干拍，增加的拍数等于$G(z)$在单位圆内的零点数。</li>
+</ul>
+</li>
+<li>参考有纹波设计，$Φ(z)$ 包含$G(z)$的全部零点。</li>
+<li>通过求解U(k)看最后的系数是否发生变化来判断是否为无纹波。</li>
+<li>分析哪些典型输入信号可以实现最小拍无纹波<ul>
+<li>对于$G(z)$来说，每有一个$\frac{1}{1-z^{-1}}$视作有一个积分环节</li>
+<li>当达到无纹波时应该有<ul>
+<li>没有积分环节$\to $只能是阶跃</li>
+<li>有1个积分环节$\to $阶跃信号或者速度信号</li>
+<li>有2个积分环节$\to $都可以</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="纯滞后控制技术"><a href="#纯滞后控制技术" class="headerlink" title="纯滞后控制技术"></a>纯滞后控制技术</h2><h3 id="施密斯预估器"><a href="#施密斯预估器" class="headerlink" title="施密斯预估器"></a>施密斯预估器</h3><ul>
+<li><p>采用Smith补偿的纯滞后补偿控制系统</p>
+<img src="/images/学习/计算机控制技术/采用Smith补偿的纯滞后补偿控制系统.png" title="采用Smith补偿的纯滞后补偿控制系统" style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" />
+
+<ul>
+<li>$G_\tau(s)&#x3D;G_P(S)(1-e^{-\tau s})$</li>
+<li>$Φ(S)&#x3D;\frac {D(S)G_P(S)e^{-\tau s}} {1+D(S)G_P(S)}$</li>
+<li>纯滞后特性已不再影响系统的稳定性，既简化了$D(S)$设计，又完全补偿了纯滞后的影响。</li>
+</ul>
+</li>
+<li><p>超前控制作用</p>
+<ul>
+<li>由于$G_\tau(s)$具有超前控制作用，反馈信号$y^{’}_\tau (t)$比输出信号$y(t)$超前一个$\tau$时间进入调节器$D(s)$， $y^{’}_\tau (t)$对$y(t)$进行了预估。</li>
+</ul>
+</li>
+<li><p>滞后环节使信号延迟</p>
+<ul>
+<li>在内存中专门设定N个单元作为存放信号m(k)的历史数据，存贮单元的个数N由下式决定<ul>
+<li>$N&#x3D;\frac {\tau} {T} \to \tau-{纯滞后时间}$</li>
+</ul>
+</li>
+<li>从单元N输出的信号，就是滞后N个采样周期的$m(k-N)$信号。</li>
+</ul>
+</li>
+<li><p>使用时对象模型需精确。</p>
+</li>
+</ul>
+<h3 id="纯滞后补偿控制算法步骤"><a href="#纯滞后补偿控制算法步骤" class="headerlink" title="纯滞后补偿控制算法步骤"></a><strong>纯滞后补偿控制算法步骤</strong></h3><ul>
+<li>计算反馈回路的偏差$e1(k):e1(k)&#x3D;r(k)-y(k)$</li>
+<li>计算纯滞后补偿器的输出$y_\tau (k)$ </li>
+<li>计算偏差$e_2(k)$</li>
+<li>计算控制器的输出u(k) <ul>
+<li>$u(k)&#x3D;u(k-1)+\Delta u(k)$</li>
+</ul>
+</li>
+</ul>
+<h2 id="串级控制技术"><a href="#串级控制技术" class="headerlink" title="串级控制技术"></a>串级控制技术</h2><ul>
+<li><p>什么是串级控制</p>
+<ul>
+<li>在DDC系统中，有多个调节器（控制器）串接，前一级的控制输出就是后一级的输入设定值，即$r_2(k)&#x3D;u_1(k)$。这种DDC系统称为“串级”控制系统。</li>
+</ul>
+</li>
+<li><p>采用串级控制的优点</p>
+<ul>
+<li>等效副对象的时间常数小于原时间常数，因此串级系统的响应速度快。</li>
+<li>等效副对象的放大系数小于原放大系数，因此允许主回路放大系数适当增大，提高了系统的静态精度及抗干扰能力。</li>
+<li>副回路有较强的抑制扰动的能力。</li>
+<li>系统对负荷变化的适应能力更强。</li>
+</ul>
+</li>
+<li><p>数字串级控制系统计算步骤</p>
+<img src="/images/学习/计算机控制技术/数字串级控制系统结构图.png" title="数字串级控制系统结构图" style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" />
+
+<ul>
+<li><p>由外环到内环进行。即先计算$PID_1$，再计算$PID_2$</p>
+</li>
+<li><p>计算主回路偏差$e_1(k)&#x3D;r_1(k)-y_1(k)$</p>
+</li>
+<li><p>计算主回路$PID_1$控制器输出$u_1(k)$</p>
+<ul>
+<li><p>根据已有的$D_1(z)&#x3D;\frac{U_1(z)}{E_1(z)}&#x3D;\frac{0.6-0.4z^{-1}+0.05z^{-2}}{1-z^{-1}}$，对乘，转换。</p>
+</li>
+<li><p>得到$u_1(k)&#x3D;u_1(k-1)+0.6e_1(k)-0.4e_1(k-1)+0.05e_1(k-2)$</p>
+</li>
+</ul>
+<img src="/images/学习/计算机控制技术/串级控制求uk.png" title="双端不对地输入" style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" />
+</li>
+<li><p>计算副回路偏差$e_2(k)&#x3D;u_1(k)-y_2(k)$</p>
+</li>
+<li><p>计算副回路$PID_2$控制器输出$u_2(k)$</p>
+</li>
+<li><p>副回路控制量$u_2(k)$经D&#x2F;A输出，作为计算机控制器的输出量作用于被控对象。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="前馈—反馈控制技术"><a href="#前馈—反馈控制技术" class="headerlink" title="前馈—反馈控制技术"></a>前馈—反馈控制技术</h2><ul>
+<li><p>什么是前馈</p>
+<ul>
+<li>按指定扰动进行开环校正，只对指定扰动有抑制作用，对其它未被引入前馈控制器的扰动量无任何补偿作用。</li>
+</ul>
+</li>
+<li><p>前馈控制结构</p>
+<img src="/images/学习/计算机控制技术/前馈控制结构.png" title="前馈控制结构" style="display: block; margin-left: auto; margin-right: auto; max-width: 60%;" />
+</li>
+<li><p>完全补偿条件</p>
+<ul>
+<li>$D_n(s)&#x3D;-\frac{G_n(s)}{G(s)}$</li>
+</ul>
+</li>
+<li><p>前馈－反馈控制结构</p>
+</li>
+<li><p>前馈－串级控制结构</p>
+</li>
+</ul>
+<h2 id="解耦控制技术"><a href="#解耦控制技术" class="headerlink" title="解耦控制技术"></a>解耦控制技术</h2><ul>
+<li>目标<ul>
+<li>通过设计解耦补偿装置，使各控制器只对各自相应的被控量施加控制作用，从而消除回路间的相互影响。</li>
+</ul>
+</li>
+<li>条件 <ul>
+<li>多变量系统解耦的条件为：$Φ(s)$为对角线矩阵。</li>
+<li>解耦的条件可转化为： $G_K(s)$为对角线矩阵。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>moyichuxin
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/10/23/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E7%AC%AC4%E7%AB%A0%E5%B8%B8%E8%A7%84%E5%8F%8A%E5%A4%8D%E6%9D%82%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/" title="计控总结-常规及复杂控制技术">http://example.com/2023/10/23/学习/计算机控制技术/第4章常规及复杂控制技术/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/23/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/%E7%AC%AC3%E7%AB%A0%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF/" rel="prev" title="计控总结-数字控制技术">
+      <i class="fa fa-chevron-left"></i> 计控总结-数字控制技术
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">系统的性能指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E8%BF%9E%E7%BB%AD%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF"><span class="nav-number">2.</span> <span class="nav-text">数字控制器的连续化设计技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86-D-s-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%BA-D-z"><span class="nav-number">2.1.</span> <span class="nav-text">将$D(s)$离散化为$D(z)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%97PID%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">数字PID控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E9%87%8F%E5%BD%A2PID%E8%B0%83%E8%8A%82%E5%99%A8"><span class="nav-number">2.3.</span> <span class="nav-text">增量形PID调节器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%AF%E5%88%86%E9%A1%B9%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">2.4.</span> <span class="nav-text">积分项的改进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E9%A1%B9%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">2.5.</span> <span class="nav-text">微分项的改进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%9C%80%E4%BC%98PID%E6%8E%A7%E5%88%B6"><span class="nav-number">2.6.</span> <span class="nav-text">时间最优PID控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%91%E8%AF%95%E6%B3%95%E7%A1%AE%E5%AE%9APID%E5%8F%82%E6%95%B0"><span class="nav-number">2.7.</span> <span class="nav-text">凑试法确定PID参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%85%85%E5%93%8D%E5%BA%94%E6%9B%B2%E7%BA%BF%E6%B3%95"><span class="nav-number">2.8.</span> <span class="nav-text">扩充响应曲线法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E7%A6%BB%E6%95%A3%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text">数字控制器的离散化设计技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E7%A6%BB%E6%95%A3%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.1.</span> <span class="nav-text">数字控制器的离散化设计步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E6%8B%8D%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.</span> <span class="nav-text">最小拍控制器的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E6%8B%8D%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%A8%B3%E5%AE%9A%E7%BA%A6%E6%9D%9F"><span class="nav-number">3.3.</span> <span class="nav-text">最小拍设计的稳定约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%91%E6%8B%8D%E6%9C%89%E7%BA%B9%E6%B3%A2%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.4.</span> <span class="nav-text">最少拍有纹波控制器的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%91%E6%8B%8D%E6%97%A0%E7%BA%B9%E6%B3%A2%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.5.</span> <span class="nav-text">最少拍无纹波控制器的设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%AF%E6%BB%9E%E5%90%8E%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="nav-number">4.</span> <span class="nav-text">纯滞后控制技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%BD%E5%AF%86%E6%96%AF%E9%A2%84%E4%BC%B0%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">施密斯预估器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%AF%E6%BB%9E%E5%90%8E%E8%A1%A5%E5%81%BF%E6%8E%A7%E5%88%B6%E7%AE%97%E6%B3%95%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.2.</span> <span class="nav-text">纯滞后补偿控制算法步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B2%E7%BA%A7%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="nav-number">5.</span> <span class="nav-text">串级控制技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E9%A6%88%E2%80%94%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="nav-number">6.</span> <span class="nav-text">前馈—反馈控制技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E8%80%A6%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="nav-number">7.</span> <span class="nav-text">解耦控制技术</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="moyichuxin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">moyichuxin</p>
+  <div class="site-description" itemprop="description">一块网络自留地</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/moyichuxin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;moyichuxin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tannanlu7hao@126.com" title="E-Mail → mailto:tannanlu7hao@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/303731131" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;303731131" rel="noopener" target="_blank"><i class="fa fa-tv fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://bing.com/" title="https:&#x2F;&#x2F;bing.com" rel="noopener" target="_blank">bing</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://google.com/" title="https:&#x2F;&#x2F;google.com" rel="noopener" target="_blank">google</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.youtube.com/" title="https:&#x2F;&#x2F;www.youtube.com" rel="noopener" target="_blank">youtube</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="https:&#x2F;&#x2F;www.bilibili.com" rel="noopener" target="_blank">bilibili</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.ithome.com/" title="https:&#x2F;&#x2F;www.ithome.com" rel="noopener" target="_blank">IT House</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">moyichuxin</span>
+</div>
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>
