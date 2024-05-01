@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/animal-kingdom-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/crocodile-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":320,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+
+
+
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("http://moyichuxin.com"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="在这篇博客中，我将分享大学生涯中最引以为傲的项目——宿舍网络改造计划。从最初的灵感到最终实现一个高度智能化和连接化的生活环境。这个项目始于对小米10发布会的一次偶然观看，那时我被AIoT的未来愿景深深吸引。随着我在自动化专业的学习深入，我开始着手改善我的宿舍网络，使之不仅满足基本需求，还能突破校园网的限制，提升日常生活的舒适度和便捷性。这个过程充满了挑战和学习，也让我深刻体会到技术带来的无限可能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宿舍网络改造计划">
+<meta property="og:url" content="http://example.com/2024/05/02/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E7%AC%94/%E5%AE%BF%E8%88%8D%E7%BD%91%E7%BB%9C%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/index.html">
+<meta property="og:site_name" content="鳄鱼中心">
+<meta property="og:description" content="在这篇博客中，我将分享大学生涯中最引以为傲的项目——宿舍网络改造计划。从最初的灵感到最终实现一个高度智能化和连接化的生活环境。这个项目始于对小米10发布会的一次偶然观看，那时我被AIoT的未来愿景深深吸引。随着我在自动化专业的学习深入，我开始着手改善我的宿舍网络，使之不仅满足基本需求，还能突破校园网的限制，提升日常生活的舒适度和便捷性。这个过程充满了挑战和学习，也让我深刻体会到技术带来的无限可能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E8%AE%BE%E5%A4%87%E5%B1%95%E7%A4%BA.jpg">
+<meta property="og:image" content="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/r2s%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5.jpg">
+<meta property="og:image" content="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E5%AE%BF%E8%88%8D%E5%85%A8%E5%B1%80.png">
+<meta property="og:image" content="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E8%BD%AF%E8%B7%AF%E7%94%B1.png">
+<meta property="og:image" content="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/XSS_AP.jpg">
+<meta property="og:image" content="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E6%89%8B%E6%9F%84%E6%9F%9C.jpg">
+<meta property="og:image" content="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E4%BA%BA%E4%BD%93%E4%BC%A0%E6%84%9F%E5%99%A8.png">
+<meta property="article:published_time" content="2024-05-01T17:11:56.881Z">
+<meta property="article:modified_time" content="2024-05-01T17:11:44.426Z">
+<meta property="article:author" content="moyichuxin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E8%AE%BE%E5%A4%87%E5%B1%95%E7%A4%BA.jpg">
+
+<link rel="canonical" href="http://example.com/2024/05/02/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E7%AC%94/%E5%AE%BF%E8%88%8D%E7%BD%91%E7%BB%9C%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>宿舍网络改造计划 | 鳄鱼中心</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">鳄鱼中心</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">灵感、爱、与思考</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/02/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E7%AC%94/%E5%AE%BF%E8%88%8D%E7%BD%91%E7%BB%9C%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="moyichuxin">
+      <meta itemprop="description" content="一块网络自留地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳄鱼中心">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          宿舍网络改造计划
+        </h1>
+
+        <div class="post-meta">
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-05-02 01:11:56 / 修改时间：01:11:44" itemprop="dateCreated datePublished" datetime="2024-05-02T01:11:56+08:00">2024-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%F0%9F%98%87%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">😇生活</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%F0%9F%98%87%E7%94%9F%E6%B4%BB/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在这篇博客中，我将分享大学生涯中最引以为傲的项目——宿舍网络改造计划。从最初的灵感到最终实现一个高度智能化和连接化的生活环境。这个项目始于对小米10发布会的一次偶然观看，那时我被AIoT的未来愿景深深吸引。随着我在自动化专业的学习深入，我开始着手改善我的宿舍网络，使之不仅满足基本需求，还能突破校园网的限制，提升日常生活的舒适度和便捷性。这个过程充满了挑战和学习，也让我深刻体会到技术带来的无限可能。跟随我的步伐，一探宿舍智能化改造的每一个细节。</p>
+<span id="more"></span>
+
+<h2 id="从小米到智能化宿舍"><a href="#从小米到智能化宿舍" class="headerlink" title="从小米到智能化宿舍"></a>从小米到智能化宿舍</h2><p>高三时，我在观看小米10发布会后开始逐步了解并接触小米及其生态系统米家。我十分认同小米所描绘的AIoT的未来，也希望自己以后能拥有一个更智能化的住宿环境。于是我开始尝试逐步改善宿舍的网络环境，企图为自己提供一个更加舒适的环境。</p>
+<p>到了大学因为博主本人学习的是自动化专业，和计算机属于是沾点边但没沾太多，很多关于计算机网络的知识都是在自己一点一点的摸索中进行。在即将毕业的现在看来，我的宿舍的智能化程度也确实是校内数一数二的了。所以在即将毕业之际，写下这篇帖子，做一个小小的总结。</p>
+<h2 id="宿舍网络设备概览"><a href="#宿舍网络设备概览" class="headerlink" title="宿舍网络设备概览"></a>宿舍网络设备概览</h2><ul>
+<li><strong>主路由器：J4125软路由</strong><ul>
+<li><strong>操作系统</strong>：PVE（包括Openwrt、Synology、Ubuntu）</li>
+<li><strong>网络扩展设备</strong>：8口交换机<ul>
+<li><strong>连接设备</strong>：<ul>
+<li><strong>游戏设备</strong>：<ul>
+<li>Xbox</li>
+<li>PS5</li>
+</ul>
+</li>
+<li><strong>智能设备</strong>：<ul>
+<li>小米网关<ul>
+<li>人体传感器（连接至小米网关）</li>
+</ul>
+</li>
+<li>小米路由器（作为AP）<ul>
+<li>米家屏幕挂灯</li>
+<li>米家台灯</li>
+<li>空调伴侣</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>移动设备</strong>：<ul>
+<li>iPhone</li>
+<li>mi10</li>
+<li>iPad</li>
+</ul>
+</li>
+<li><strong>个人电脑</strong>：<ul>
+<li>笔记本</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="网络改造第一阶段"><a href="#网络改造第一阶段" class="headerlink" title="网络改造第一阶段"></a>网络改造第一阶段</h2><p>最开始想要优化网络还是要从游戏说起，高考后，由于我对电脑知识了解不深，便盲目冲了一台搭载RTX1650的笔记本。到了大二发现很多想玩的游戏都没有办法流畅运行了，这时候想换电脑但是又不好意思找父母开口要太多钱，于是买了Xbox Series S来临时解决游戏问题。但是回到宿舍发现Xbox的游戏加速是个令人头痛的问题，加之校园网的设备登录限制——每个账号最多允许两个设备同时在线，这对于我这种同时使用手机、平板、笔记本及游戏主机的用户来说非常不便。</p>
+<img src="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E8%AE%BE%E5%A4%87%E5%B1%95%E7%A4%BA.jpg" title="设备展示" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;" />
+
+<p>因为学校同学大部分都是用手机、电脑玩游戏，最多也就是有小部分同学会使用Switch进行游戏，而这些都可以在手机端&#x2F;电脑端实现简单的游戏加速。而如果想要实现Xbox&#x2F;PS5的加速则比较困难，我经过查阅材料发现主要有以下几个途径：</p>
+<ol>
+<li>使用电脑进行网络加速。</li>
+<li>购买专用的游戏加速盒子。</li>
+<li>使用路由器插件进行加速。</li>
+</ol>
+<p>这些解决方案的难度依次递增。由于我的笔记本配置限制，无法启用自带热点，因此无法为Xbox实现联网，更不用说网络加速了。考虑到这一点，我尝试用UU游戏加速盒子，但由于校园网每次联网都需要登录认证，而加速盒子无法显示登录页面（这似乎与DNS重定向有关），导致我无法通过它联网。因此，使用路由器插件成为了我唯一的选择。正是这些挑战推动了我开始进行宿舍网络改造的第一步。</p>
+<p>在网上查找了许多资料后，我知道了自己需要一个叫做软路由的硬件，来实现网络的代理以及游戏的加速。经过多番查询我决定先满足自己最基础的需求：也就是Xbox的游戏加速。我购买了R2S这个很经典的软路由，刷入了Openwrt。但是在软路由联网的时候，我遇到了不小的问题。我发现R2S在有的Openwrt版本中可以跳出来校园网认证界面但是有的则一直跳不出来导致无法联网。在经过系统选项的对比，以及身边多位同学的帮助后，我意识到问题出在DNS重定向上。校园网通过DNS重定向引导未认证的设备至登录页面，关闭Openwrt系统设置中的DNS重定向后，恢复了校园网的DNS控制，从而正确加载并显示了登录界面。</p>
+<img src="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/r2s%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5.jpg" title="R2S" style="display: block; margin-left: auto; margin-right: auto; max-width: 50%;" />
+
+<p>就这样，我成功在宿舍部署了软路由，并在Openwrt中安装了UU加速器和师夷长技以制夷插件，极大地改善了我的宿舍网络环境。这一改动也巧妙地突破了校园网设备登录的限制——每人最多只能同时在线两个设备，这一限制对于多设备用户来说确实很不便。现在，我的软路由只占用一个设备名额，并通过它连接了一个作为AP（同时充当四口交换机）的小米路由器。此外，我还引入了米家空调伴侣，实现了宿舍空调的定时自动化操作，进一步提升了宿舍舒适度。</p>
+<p>由于我一直在使用米家的台灯和屏幕挂灯，到了大三，我开始考虑是否可以通过人体传感器来实现灯光的自动控制，以满足我(懒狗)想要“坐下自动开灯，离开后自动关灯”的需求。正巧那时小米商城推出了新款的人体传感器2，价格也相当亲民，我便一时上头下单购买了。</p>
+<p>收到产品后，我意外发现这款人体传感器并不支持直接的蓝牙连接，而是需要连接到一个蓝牙mesh网关。虽然这出乎我的预料，但秉着买都买了的原则，又购入了小米多模网关2以兼容这个传感器。安装后，我发现现有的路由器AP的网口数量不足以支持新增的设备，真是一个郁闷的事情。为了彻底解决这一问题，并遵循“既然已经开始就做到最好”的原则，我购买了一个Tp-Link的8口交换机。通过这些增加和调整，完善了宿舍的智能灯光控制系统，还彻底解决了网络基础设施的限制问题。现在，每当我坐到座位，灯光会自动开启，离开时则关闭，极大地增强了宿舍的便利性和舒适度。</p>
+<p>至此，宿舍网络改造的第一阶段已顺利完成。目前，我已经实现了以下功能：</p>
+<ol>
+<li><strong>网络代理全覆盖</strong>：成功突破了校园网设备登录数量的限制，实现了网络环境的全域代理。</li>
+<li><strong>游戏加速</strong>：通过安装UU游戏加速插件，有效提升了Xbox的网络游戏体验，实现了游戏过程中的流畅连接。</li>
+<li><strong>智能照明</strong>：桌面台灯和屏幕挂灯现在能够根据人体存在自动开启或关闭，离开后5分钟自动关闭，并且在凌晨1点后自动切换到夜间模式，对亮度和色温进行了优化。</li>
+<li><strong>空调自动化</strong>：宿舍的空调系统已实现自动化控制，可以在冬季起床前20分钟自动开启暖风，夏季则在返回宿舍前远程启动，吹送冷风。</li>
+</ol>
+<p>尽管已取得显著进展，但仍有一些需要改进的地方：</p>
+<ol>
+<li><strong>校园网认证</strong>：目前，校园网每3至5天需要重新认证一次，这一过程仍需手动操作，如果不及时登录，将导致网络中断。</li>
+<li><strong>智能设备控制</strong>：从小米切换到iPhone后，宿舍的智能设备控制必须通过米家APP进行，无法使用小爱同学的语音控制功能，使得控制过程较为繁琐。</li>
+</ol>
+<h2 id="网络改造第二阶段"><a href="#网络改造第二阶段" class="headerlink" title="网络改造第二阶段"></a>网络改造第二阶段</h2><p>在浏览各种技术论坛的过程中，我逐渐发现软路由的应用远比我预想的广泛，尤其是基于X86架构的软路由，它们提供了更多的定制和扩展可能性。尽管R2S软路由在初期满足了我的基本需求，但它的性能和稳定性仍有限。特别是R2S偶尔会出现死机的问题，尝试更换不同版本的OpenWrt操作系统和TF卡都未能根本解决问题。</p>
+<p>因此，在大四的时候，我决定启动网络改造计划的第二阶段——升级我的软路由。这次升级的目的是选择一个更稳定、更强大的硬件平台，以适应更高的性能需求和未来可能的扩展。</p>
+<p>在软路由升级的前期，我在N100和J4125两款产品之间进行了激烈的比较。最初我本打算采用更高性能的N100，希望一次性满足所有未来可能的需求，但宿舍环境中的散热问题让我担忧。考虑到实际情况，我选择了J4125裸机，这是一个性能和散热之间较好的妥协选择。随后为这台机器配备了2×8GB的DDR4内存和一块三星120GB的MSATA存储，以期提高系统的响应速度和存储能力。</p>
+<p>然而，当设备到手后，我发现其发热问题仍然相当严重，这迫使我不得不另外购买了散热风扇来解决过热问题(同时发现风扇声音真的很小)😇，早知如此当初就上N100了。</p>
+<p>接下来，我进行了常规的系统安装环节。首先在网上查找相关资料和教程，然后在我的新软路由上安装了PVE系统。基于这个平台，我进一步安装了OpenWrt、Synology和Ubuntu三个操作系统，以满足不同的网络和存储需求。</p>
+<p>为了增强数据存储和共享能力，我将之前用于Xbox Series S的2TB希捷机械硬盘挂载到了PVE系统上，主要空间分配给了Synology，实现了宿舍内文件的高效传输和共享。这一设置特别符合我们专业的需求，因为我们大多数人的电脑都配置了Windows和Ubuntu的双系统。在Synology的Docker环境中，我部署了Nastools、Transmission、Jackett、Jellyfin和ChineseSubFinder等多个容器，整合了影视内容的下载和观看功能。通过在iOS设备上使用Infuse应用，我们能够享受到便捷的影视观看体验。</p>
+<p>在自学计算机网络课程的过程中，我对校园网的认证机制进行了深入研究。我发现校园网的登录过程仅仅是向特定的URL发送一个包含用户名和密码的明文POST请求，这种方式暴露了一定的安全风险，因为信息以未加密形式传输，容易被截取。</p>
+<p>为了优化这一登录过程并提升使用便捷性，我设计并编写了一个自动化脚本，部署在我的OpenWrt系统上。脚本的工作原理是每隔一分钟利用<code>ping</code>命令检测与百度的网络连接是否正常，以此作为网络连通性的简单测试。如果<code>ping</code>测试失败，表明校园网认证可能已失效，脚本会自动重新发送登录的POST请求。通过这种方式，我成功实现了校园网的无感知自动登录，显著提高了宿舍网络的稳定性和访问便捷性。</p>
+<p>在宿舍网络和智能家居系统的后续改进中，我在Ubuntu的Docker环境下尝试了更多的应用。部署了Home Assistant和HomeBridge这两个容器，以便将米家的智能设备直接集成到iOS的HomeKit中。这一集成简化了对宿舍内智能设备的控制，使得日常操作更为便捷。</p>
+<p>此外，考虑到我有一个阿里云服务器(大学生白嫖），我还尝试搭建了内网穿透功能。这使得即便在校外，我也能远程访问和管理宿舍中的设备，无论是安全监控还是环境控制，都变得更加灵活和高效。</p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><img src="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E5%AE%BF%E8%88%8D%E5%85%A8%E5%B1%80.png" title="宿舍全局" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;" />
+
+<p><img src="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E8%BD%AF%E8%B7%AF%E7%94%B1.png" title="软路由" style="display: block; margin-left: auto; margin-right: auto; max-width: 50%;" /><img src="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/XSS_AP.jpg" title="XSS" style="display: block; margin-left: auto; margin-right: auto; max-width: 50%;" /></p>
+<p><img src="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E6%89%8B%E6%9F%84%E6%9F%9C.jpg" title="手柄柜" style="display: block; margin-left: auto; margin-right: auto; max-width: 50%;" /><img src="https://blog-zyp.oss-cn-hangzhou.aliyuncs.com/posts/lifestyles/writing/%E4%BA%BA%E4%BD%93%E4%BC%A0%E6%84%9F%E5%99%A8.png" title="人体传感器" style="display: block; margin-left: auto; margin-right: auto; max-width: 50%;" /></p>
+<p>至此，宿舍网络改造计划终于圆满完成。在这个过程中，我通过不断地学习、尝试和修正，逐步优化了宿舍的网络环境。虽然某些功能对于我这个大学生来说可能稍显过剩，但出于对技术的热情，我仍然投入了大量时间去探索和实践。这个项目是我大学生涯中最引以为傲的项目，极大地锻炼了我的信息搜集、学习和实际操作能力。</p>
+
+    </div>
+
+    
+    
+    
+
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>moyichuxin
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2024/05/02/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E7%AC%94/%E5%AE%BF%E8%88%8D%E7%BD%91%E7%BB%9C%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/" title="宿舍网络改造计划">http://example.com/2024/05/02/生活/随笔/宿舍网络改造计划/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/04/28/%E7%94%9F%E6%B4%BB/%E6%B8%B8%E6%88%8F/%E6%88%98%E5%9C%B02042/%E6%88%98%E5%9C%B02042_4%E6%9C%88%E9%9B%86%E9%94%A6/" rel="prev" title="战地2042-4月集锦">
+      <i class="fa fa-chevron-left"></i> 战地2042-4月集锦
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E5%B0%8F%E7%B1%B3%E5%88%B0%E6%99%BA%E8%83%BD%E5%8C%96%E5%AE%BF%E8%88%8D"><span class="nav-number">1.</span> <span class="nav-text">从小米到智能化宿舍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%BF%E8%88%8D%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%A6%82%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">宿舍网络设备概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%94%B9%E9%80%A0%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5"><span class="nav-number">3.</span> <span class="nav-text">网络改造第一阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%94%B9%E9%80%A0%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5"><span class="nav-number">4.</span> <span class="nav-text">网络改造第二阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">最终效果</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="moyichuxin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">moyichuxin</p>
+  <div class="site-description" itemprop="description">一块网络自留地</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/moyichuxin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;moyichuxin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tannanlu7hao@126.com" title="E-Mail → mailto:tannanlu7hao@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/303731131" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;303731131" rel="noopener" target="_blank"><i class="fa fa-tv fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://bing.com/" title="https:&#x2F;&#x2F;bing.com" rel="noopener" target="_blank">bing</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://google.com/" title="https:&#x2F;&#x2F;google.com" rel="noopener" target="_blank">google</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.youtube.com/" title="https:&#x2F;&#x2F;www.youtube.com" rel="noopener" target="_blank">youtube</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="https:&#x2F;&#x2F;www.bilibili.com" rel="noopener" target="_blank">bilibili</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.ithome.com/" title="https:&#x2F;&#x2F;www.ithome.com" rel="noopener" target="_blank">IT House</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">moyichuxin</span>
+</div>
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
